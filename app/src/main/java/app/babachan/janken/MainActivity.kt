@@ -1,11 +1,9 @@
 package app.babachan.janken
 
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.*
-import kotlin.random.Random.Default.nextInt
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,7 +12,7 @@ class MainActivity : AppCompatActivity() {
 
         gooButton.setOnClickListener {
             player.text = "あなたの手はグーです"
-            val number: Int = Random.nextInt(3)
+            val number = (0..2).random()
 
             when (number){
                 0 -> {cpu.setImageResource(R.drawable.goo)
@@ -39,7 +37,7 @@ class MainActivity : AppCompatActivity() {
 
         chokiButton.setOnClickListener {
             player.text = "あなたの手はチョキです"
-            val number: Int = Random.nextInt(3)
+            val number: Int = (0..2).random()
 
             when (number){
                 0 -> {cpu.setImageResource(R.drawable.choki)
@@ -64,7 +62,7 @@ class MainActivity : AppCompatActivity() {
 
         paaButton.setOnClickListener {
             player.text = "あなたの手はパーです"
-            val number: Int = Random.nextInt(3)
+            val number: Int = (0..2).random()
 
             when (number){
                 0 -> {cpu.setImageResource(R.drawable.paa)
