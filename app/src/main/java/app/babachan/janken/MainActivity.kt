@@ -32,7 +32,6 @@ class MainActivity : AppCompatActivity() {
                     result.setTextColor(Color.parseColor("#2196f3"))
                 }
             }
-
         }
 
         chokiButton.setOnClickListener {
