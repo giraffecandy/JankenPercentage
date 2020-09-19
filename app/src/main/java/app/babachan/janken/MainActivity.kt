@@ -16,11 +16,14 @@ class MainActivity : AppCompatActivity() {
                 val number = (0..2).random()
                 val data: SharedPreferences = getSharedPreferences("Data", Context.MODE_PRIVATE)
                 val editor = data.edit()
+                val draw = 10
+                val win = 11
+                val lose = 12
 
                 when (number) {
                     0 -> {
                         cpu.setImageResource(R.drawable.goo)
-                        editor.putString("Draw", "引き分け")
+                        editor.putInt("Draw", draw)
                     }
                     1 -> {
                         cpu.setImageResource(R.drawable.choki)
@@ -37,74 +40,4 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
-
-//gooButton.setOnClickListener {
-////            player.text = "あなたの手はグーです"
-//
-////                    result.text = "引き分けです"
-////                    result.setTextColor(Color.parseColor("#8a000000"))
-//
-//
-////                    result.text = "あなたの勝ちです"
-////                    result.setTextColor(Color.RED)
-//}
-//
-//cpu.setImageResource(R.drawable.paa)
-////                    result.text = "あなたの負けです"
-////                    result.setTextColor(Color.parseColor("#2196f3"))
-//}
-//}
-//}
-//
-//chokiButton.setOnClickListener {
-//    player.text = "あなたの手はチョキです"
-//    val number: Int = (0..2).random()
-//
-//    when (number) {
-//        0 -> {
-//            cpu.setImageResource(R.drawable.choki)
-//            result.text = "引き分けです"
-//            result.setTextColor(Color.parseColor("#8a000000"))
-//        }
-//
-//        1 -> {
-//            cpu.setImageResource(R.drawable.paa)
-//            result.text = "あなたの勝ちです"
-//            result.setTextColor(Color.RED)
-//        }
-//
-//        2 -> {
-//            cpu.setImageResource(R.drawable.goo)
-//            result.text = "あなたの負けです"
-//            result.setTextColor(Color.parseColor("#2196f3"))
-//        }
-//    }
-//
-//}
-//
-//paaButton.setOnClickListener {
-//    player.text = "あなたの手はパーです"
-//    val number: Int = (0..2).random()
-//
-//    when (number) {
-//        0 -> {
-//            cpu.setImageResource(R.drawable.paa)
-//            result.text = "引き分けです"
-//            result.setTextColor(Color.parseColor("#8a000000"))
-//        }
-//
-//        1 -> {
-//            cpu.setImageResource(R.drawable.goo)
-//            result.text = "あなたの勝ちです"
-//            result.setTextColor(Color.RED)
-//        }
-//
-//        2 -> {
-//            cpu.setImageResource(R.drawable.choki)
-//            result.text = "あなたの負けです"
-//            result.setTextColor(Color.parseColor("#2196f3"))
-//        }
-//    }
-//
-//}
 
