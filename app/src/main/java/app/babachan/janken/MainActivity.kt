@@ -11,6 +11,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         listOf(gooButton, paaButton, chokiButton).forEachIndexed { index, button ->
             button.setOnClickListener {
                 val number = (0..2).random()
