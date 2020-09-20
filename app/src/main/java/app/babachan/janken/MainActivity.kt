@@ -1,111 +1,103 @@
 package app.babachan.janken
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    val realm: Realm = Realm.getDefaultInstance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        var count = 0
 
-        listOf(gooButton, paaButton, chokiButton).forEachIndexed { index, button ->
-            button.setOnClickListener {
-                val number = (0..2).random()
-                val data: SharedPreferences = getSharedPreferences("Data", Context.MODE_PRIVATE)
-                val editor = data.edit()
+        gooButton.setOnClickListener {
+//            player.text = "あなたの手はグーです"
+            val number: Int = (0..2).random()
+//            val data: SharedPreferences = getSharedPreferences("DataStore", Context.MODE_PRIVATE)
+//            val editor = data.edit()
+            val intent = Intent(applicationContext, SecondActivity::class.java)
 
-                when (number) {
-                    0 -> {
-                        cpu.setImageResource(R.drawable.goo)
-                        editor.putString("Draw", "引き分け")
-                    }
-                    1 -> {
-                        cpu.setImageResource(R.drawable.choki)
-                        editor.putString("Win", "勝ち")
+            when (number) {
+                0 -> {
+                    var countWG = 3
+                    intent.putExtra("WinGoo", countWG)
+                }
 
-                    }
-                    2 -> {
-                        cpu.setImageResource(R.drawable.paa)
-                        editor.putString("lose", "負け")
-                    }
+                1 -> {
+                    var countLG = count ++
+                    intent.putExtra("LoseGoo",countLG)
+                }
 
+                2 -> {
+                    var countDG = count ++
+                    intent.putExtra("DrawGoo", countDG)
                 }
             }
+            startActivity(intent)
+        }
+
+        chokiButton.setOnClickListener {
+            player.text = "あなたの手はチョキです"
+            val number: Int = (0..2).random()
+            val data: SharedPreferences = getSharedPreferences("DataStore", Context.MODE_PRIVATE)
+            val editor = data.edit()
+
+            when (number) {
+                0 -> {
+                    cpu.setImageResource(R.drawable.choki)
+                    editor.putInt("DrawChoki", 1)
+                }
+
+                1 -> {
+                    cpu.setImageResource(R.drawable.paa)
+                    editor.putInt("WinChoki", 2)
+                }
+
+                2 -> {
+                    cpu.setImageResource(R.drawable.goo)
+                    editor.putInt("LoseChoki", 0)
+                }
+            }
+
+        }
+
+        paaButton.setOnClickListener {
+            player.text = "あなたの手はパーです"
+            val number: Int = (0..2).random()
+            val data: SharedPreferences = getSharedPreferences("DataStore", Context.MODE_PRIVATE)
+            val editor = data.edit()
+
+            when (number) {
+                0 -> {
+                    cpu.setImageResource(R.drawable.paa)
+                    editor.putInt("DrawPaa", 1)
+                }
+
+                1 -> {
+                    cpu.setImageResource(R.drawable.goo)
+                    editor.putInt("WinPaa", 2)
+                }
+
+                2 -> {
+                    cpu.setImageResource(R.drawable.choki)
+                    editor.putInt("LosePaa", 0)
+                }
+            }
+
         }
     }
-}
 
-//gooButton.setOnClickListener {
-////            player.text = "あなたの手はグーです"
-//
-////                    result.text = "引き分けです"
-////                    result.setTextColor(Color.parseColor("#8a000000"))
-//
-//
-////                    result.text = "あなたの勝ちです"
-////                    result.setTextColor(Color.RED)
-//}
-//
-//cpu.setImageResource(R.drawable.paa)
-////                    result.text = "あなたの負けです"
-////                    result.setTextColor(Color.parseColor("#2196f3"))
-//}
-//}
-//}
-//
-//chokiButton.setOnClickListener {
-//    player.text = "あなたの手はチョキです"
-//    val number: Int = (0..2).random()
-//
-//    when (number) {
-//        0 -> {
-//            cpu.setImageResource(R.drawable.choki)
-//            result.text = "引き分けです"
-//            result.setTextColor(Color.parseColor("#8a000000"))
-//        }
-//
-//        1 -> {
-//            cpu.setImageResource(R.drawable.paa)
-//            result.text = "あなたの勝ちです"
-//            result.setTextColor(Color.RED)
-//        }
-//
-//        2 -> {
-//            cpu.setImageResource(R.drawable.goo)
-//            result.text = "あなたの負けです"
-//            result.setTextColor(Color.parseColor("#2196f3"))
-//        }
-//    }
-//
-//}
-//
-//paaButton.setOnClickListener {
-//    player.text = "あなたの手はパーです"
-//    val number: Int = (0..2).random()
-//
-//    when (number) {
-//        0 -> {
-//            cpu.setImageResource(R.drawable.paa)
-//            result.text = "引き分けです"
-//            result.setTextColor(Color.parseColor("#8a000000"))
-//        }
-//
-//        1 -> {
-//            cpu.setImageResource(R.drawable.goo)
-//            result.text = "あなたの勝ちです"
-//            result.setTextColor(Color.RED)
-//        }
-//
-//        2 -> {
-//            cpu.setImageResource(R.drawable.choki)
-//            result.text = "あなたの負けです"
-//            result.setTextColor(Color.parseColor("#2196f3"))
-//        }
-//    }
-//
-//}
+    override fun onDestroy() {
+        super.onDestroy()
+        realm.close()
+    }
+}
 

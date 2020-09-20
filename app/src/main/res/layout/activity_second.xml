@@ -29,7 +29,7 @@
                 android:textSize="30sp" />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/countTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -70,29 +70,38 @@
                 android:textSize="30sp" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/resultTextView"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:text="あなたの勝ちです"
-            android:textSize="24sp" />
+            android:layout_height="match_parent"
+            android:background="#8BC34A"
+            android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/cpu"
-            android:layout_width="228dp"
-            android:layout_height="221dp"
-            android:layout_gravity="center"
-            android:adjustViewBounds="true"
-            app:srcCompat="@drawable/goo2" />
+            <TextView
+                android:id="@+id/resultTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:gravity="center"
+                android:text="あなたの勝ちです"
+                android:textSize="24sp" />
 
-        <TextView
-            android:id="@+id/yourChoiceTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:text="あなたの手はパーです"
-            android:textSize="24sp" />
+            <ImageView
+                android:id="@+id/cpu"
+                android:layout_width="134dp"
+                android:layout_height="92dp"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                app:srcCompat="@drawable/goo2" />
+
+            <TextView
+                android:id="@+id/yourChoiceTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:gravity="center"
+                android:text="あなたの手はパーです"
+                android:textSize="24sp" />
+        </LinearLayout>
 
     </LinearLayout>
 
