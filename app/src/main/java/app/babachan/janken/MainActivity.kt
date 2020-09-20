@@ -16,18 +16,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var count = 0
+        var count: Int = 0
 
         gooButton.setOnClickListener {
 //            player.text = "あなたの手はグーです"
             val number: Int = (0..2).random()
-//            val data: SharedPreferences = getSharedPreferences("DataStore", Context.MODE_PRIVATE)
-//            val editor = data.edit()
+
             val intent = Intent(applicationContext, SecondActivity::class.java)
 
             when (number) {
                 0 -> {
-                    var countWG = 3
+                    var countWG = count
                     intent.putExtra("WinGoo", countWG)
                 }
 
